@@ -1,0 +1,147 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>How is Amir Doing Today?</title>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'my.css' %}">
+</head>
+<body>
+    <div class="desktop">
+        <div class="window head">
+            <div class="title-bar">
+                <span class="title">!!!</span>
+                <div class="window-controls">
+                    <button class="minus">-</button>
+                    <button class="exit">X</button>
+                </div>
+            </div>
+            <div class="menu-bar">
+                <span>File</span>
+                <span>Edit</span>
+                <span>View</span>
+                <span>Help</span>
+            </div>
+            <div class="content">
+                <h2>How is Amir Doing Today?</h2>
+            </div>
+        </div>
+
+        <div class="window moodselection">
+            <div class="title-bar">
+                <span class="title">Yo how ya feelin twin??</span>
+                <div class="window-controls">
+                    <button class="minus">-</button>
+                    <button class="exit">X</button>
+                </div>
+            </div>
+            <div class="content moodlist">
+                <button>
+                    <img src="{% static 'images/happy.gif' %}" alt="Happy" class="mood-img">
+                    <span class="moodspan">Happy</span>
+                </button>
+                <button>
+                    <img src="{% static 'images/sad.gif' %}" alt="Sad" class="mood-img">
+                    <span class="moodspan">Sad</span>
+                </button>
+                <button>
+                    <img src="{% static 'images/angry.gif' %}" alt="Angry" class="mood-img">
+                    <span class="moodspan">Angry</span>
+                </button>
+                <button>
+                    <img src="{% static 'images/tired.gif' %}" alt="Tired" class="mood-img">
+                    <span class="moodspan">Tired</span>
+                </button>
+                <button>
+                    <img src="{% static 'images/excited.gif' %}" alt="Excited" class="mood-img">
+                    <span class="moodspan">Excited</span>
+                </button>
+            </div>
+            <div class="story">
+                <form id="diary-form" method = "post">
+                    {% csrf_token %}
+                    <textarea id="entry-content" rows="5" placeholder="Write your thoughts..."></textarea><br>
+                    <button type="submit">Save</button>
+                </form>
+                <div class="reaction">
+                    <img id="reaction-img" src="{% static 'images/speaking2.png' %}" alt="therapist" class="reaction-doodle">
+                    <hr>
+                    <div style="padding: 10px;">
+                        <p id="ai-response-display">* {{ message }}</p>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+        <!--<hr>
+        <h2>Previous Entries</h2>
+        <ul id="entries-list"></ul>-->
+
+
+
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
+    <script>
+        const form = document.getElementById('diary-form');
+        const contentField = document.getElementById('entry-content');
+        const entriesList = document.getElementById('entries-list');
+        const reactionImg = document.getElementById('reaction-img');
+        const aiDisplay = document.getElementById('ai-response-display');
+
+        async function fetchEntries() {
+            const response = await fetch('/api/entries/');
+            const entries = await response.json();
+            entriesList.innerHTML = '';
+            entries.forEach(entry => {
+                const li = document.createElement('li');
+                li.innerText = `[${entry.created_at}] ${entry.content}`;
+                entriesList.appendChild(li);
+            });
+        }
+        let typingTimer;
+        const typingDelay = 1000; // ms before assuming user stopped typing
+        contentField.addEventListener('input', () => {
+            reactionImg.src = "{% static 'images/looking.png' %}";
+
+            clearTimeout(typingTimer);
+            typingTimer = setTimeout(() => {
+                reactionImg.src = "{% static 'images/speaking2.png' %}"; 
+            }, typingDelay);
+        });
+
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const content = contentField.value;
+            if (!content.trim()) return;
+            var csrftoken = Cookies.get('csrftoken');
+
+            const response = await fetch('/home/', {
+                method: 'POST',
+                headers: {
+                    //'Content-Type': 'application/json',
+                    'X-CSRFToken': csrftoken,
+                },
+                body: new URLSearchParams({ 'content': content })
+            });
+            const data = await response.json();
+            if (data.response) {
+                aiDisplay.innerText = data.response; // Update the content of the <p> tag
+            } else {
+                aiDisplay.innerText = "Error: Could not retrieve AI response.";
+            }
+
+            contentField.value = '';
+            fetchEntries();
+        });
+
+        fetchEntries();
+    </script>
+
+
+
+
+</body>
+</html>
