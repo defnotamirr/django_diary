@@ -1,0 +1,1 @@
+web: gunicorn howsamirdoingtoday.wsgi --log-file -
