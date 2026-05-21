@@ -1,1 +1,1 @@
-web: gunicorn howsamirdoingtoday.wsgi --log-file -
+web: gunicorn ideaone.wsgi --bind 0.0.0.0:$PORT --log-file -
