@@ -31,7 +31,7 @@ SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY', 'default-fallback-key-for-dev')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['ideaone.railway.app', 'localhost']
+ALLOWED_HOSTS = ['djangodiary-production.up.railway.app', 'localhost']
 
 
 # Application definition
