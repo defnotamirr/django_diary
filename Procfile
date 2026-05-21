@@ -1,1 +1,1 @@
-web: gunicorn howsamirdoingtoday.wsgi --log-file -
+web: gunicorn ideaone.wsgi --log-file -
