@@ -137,8 +137,18 @@ body {
   padding: 10px;
   color: #fff;
   font-family: 'Press Start 2P', cursive;
-  border: 0;
 }
+
+#entry-content textarea {
+  outline: 0;
+  border: 0;
+  box-shadow: none;
+}
+#entry-content textarea :focus {
+  outline: 0;
+  box-shadow: none;
+}
+
 #entry-content::placeholder{
   color: #fff;
   font-family: 'Press Start 2P', cursive;
