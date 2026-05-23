@@ -169,8 +169,16 @@ input:focus::placeholder{
   align-items: flex-end;  /* ← add this */
 }
 
+
 #save-btn {
-  width: 200px;
-  height: 60px;
+  width: auto;
+  height: auto;
   margin-top: 10px;
+  padding: 0;
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  overflow: visible;
 }
