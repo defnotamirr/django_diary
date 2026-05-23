@@ -104,11 +104,11 @@
         let typingTimer;
         const typingDelay = 1000; // ms before assuming user stopped typing
         contentField.addEventListener('input', () => {
-            reactionImg.src = "{% static 'images/looking.JPEG' %}";
+            reactionImg.src = "{% static 'images/looking.png' %}";
 
             clearTimeout(typingTimer);
             typingTimer = setTimeout(() => {
-                reactionImg.src = "{% static 'images/speaking2.JPRG' %}"; 
+                reactionImg.src = "{% static 'images/speaking2.png' %}"; 
             }, typingDelay);
         });
 
