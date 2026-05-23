@@ -126,6 +126,7 @@ body {
 .story{
   margin: 10px 10px 10px;
   display: flex;
+  background-color: #000;
   /*height: 300px;*/
 }
 
