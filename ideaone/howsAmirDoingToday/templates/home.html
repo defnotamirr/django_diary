@@ -6,7 +6,10 @@
   <title>How is Amir Doing Today?</title>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
   <link href="https://cdn.tailwindcss.com" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'undertale.css' %}" />
   <link rel="stylesheet" href="{% static 'my.css' %}">
+  <script src="{% static 'js/undertale.js' %}"></script>
+
 </head>
 <body>
     <div class="desktop">
@@ -63,7 +66,7 @@
                 <form id="diary-form" method = "post">
                     {% csrf_token %}
                     <textarea id="entry-content" rows="5" placeholder="Write your thoughts..."></textarea><br>
-                    <button type="submit"></button>
+                    <button type="submit" id = "save"></button>
                 </form>
                 <div class="reaction">
                     <img id="reaction-img" src="{% static 'images/speaking2.png' %}" alt="therapist" class="reaction-doodle">
