@@ -63,7 +63,7 @@
                 <form id="diary-form" method = "post">
                     {% csrf_token %}
                     <textarea id="entry-content" rows="5" placeholder="Write your thoughts..."></textarea><br>
-                    <button type="submit">Save</button>
+                    <button type="submit"></button>
                 </form>
                 <div class="reaction">
                     <img id="reaction-img" src="{% static 'images/speaking2.png' %}" alt="therapist" class="reaction-doodle">
