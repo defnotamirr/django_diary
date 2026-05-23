@@ -18,7 +18,7 @@ message_list = ['You are an incredibly kind, deeply empathetic, and highly insig
 def get_completion(content):
     print(content) ##prompt is the message from the user, you can find it in home.html
     messages = [
-        {"role": "system", "content": "You are the great gatsby, act accordingly to the book"},
+        {"role": "system", "content": "You are a VIP-Kazakh, act accordingly."},
         {"role": "user", "content": content}
     ]
 
