@@ -136,7 +136,7 @@ body {
   background-color: #000;
   padding: 10px;
   color: #fff;
-  font-family: 'Press Start 2P', cursive;
+  /*font-family: 'Press Start 2P', cursive;*/
 
   outline: 0;
   border: 0;
@@ -145,11 +145,13 @@ body {
 
 #entry-content::placeholder{
   color: #fff;
-  font-family: 'Press Start 2P', cursive;
+  /*font-family: 'Press Start 2P', cursive;*/
 }
+
 textarea:focus::placeholder {
     color: transparent;
 }
+
 .reaction-doodle{
   width: 250px;
   height: 250px;
@@ -161,7 +163,7 @@ textarea:focus::placeholder {
 }
 .reaction p{
   color: #fff;
-  font-size: 10px;
+  /*font-size: 10px;*/
   padding: 5px 5px 0 5px;
   line-height: 1.5;
 }
