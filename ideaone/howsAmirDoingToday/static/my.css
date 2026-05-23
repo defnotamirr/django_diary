@@ -137,6 +137,7 @@ body {
   padding: 10px;
   color: #fff;
   font-family: 'Press Start 2P', cursive;
+  border: 0;
 }
 #entry-content::placeholder{
   color: #fff;
